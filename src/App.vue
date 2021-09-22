@@ -1,19 +1,25 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <Counter />
+    <Timer />
+    <StudentList />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Counter from "./components/Counter.vue";
+import Timer from "./components/Timer.vue";
+import StudentList from "./components/StudentList.vue"
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Counter,
+    Timer,
+    StudentList
+  },
+};
 </script>
 
 <style>
