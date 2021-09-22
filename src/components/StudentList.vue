@@ -3,13 +3,7 @@
     <input placeholder="Search" v-model="keywords" />
     <StudentCreator />
 
-    <ul id="students-list-container" v-if="!keywords">
-      <li v-for="student in students" :key="student.id">
-        <StudentCard :student="student" />
-      </li>
-    </ul>
-
-    <ul id="students-list-container" v-if="keywords">
+    <ul id="students-list-container">
       <li v-for="student in searchRes" :key="student.id">
         <StudentCard :student="student" />
       </li>
@@ -38,14 +32,19 @@ export default {
   },
   computed: {
     searchRes: function() {
-      if (!this.keywords) return null;
-      return this.students.filter((s) => this.isInclude(s));
-    },
-  },
-  methods: {
-    isInclude(s) {
-      const name = s.firstName.toLowerCase() + " " + s.lastName.toLowerCase();
-      return name.includes(this.keywords.toLowerCase());
+      const isInclude = (s) => {
+        const name = s.firstName.toLowerCase() + " " + s.lastName.toLowerCase();
+        return name.includes(this.keywords.toLowerCase());
+      };
+      if (!this.keywords) {
+        return this.students;
+      } else {
+        if (!this.students.some(isInclude)) {
+          return null;
+        } else {
+          return this.students.filter((s) => isInclude(s));
+        }
+      }
     },
   },
   mounted: function() {

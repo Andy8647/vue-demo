@@ -3,7 +3,7 @@
     <img :src="student.pic" alt="" />
     <span>{{ name }}</span>
     <br />
-    <span v-bind:title="student.city">Average Score: {{ avgScore }}</span>
+    <span v-bind:title="student.grades">Average Score: {{ avgScore }}</span>
   </div>
 </template>
 
